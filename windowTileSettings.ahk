@@ -23,3 +23,9 @@ getH(position){
   RegExMatch(windowPositions, "Position" . position . "=[^,]*,[^,]*,[^,]*,([^,]*)\s", match)
   return %match1%
 }
+
+;writing positions
+writePositionCoords(position, x, y, w, h){
+  IniWrite, %x%`,%y%`,%w%`,%h%, positions.ini, WindowPositions, Position%position%
+  return
+}
