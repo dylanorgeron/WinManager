@@ -6,7 +6,7 @@ IniRead, windowPositions, positions.ini, WindowPositions
 global savedHotkeys =
 IniRead, savedHotkeys, hotkeys.ini, Hotkeys
 
-;reading coords
+;reading positions
 getX(position){
   RegExMatch(windowPositions, "Position" . position . "=([^,]*)", match)
   return %match1%

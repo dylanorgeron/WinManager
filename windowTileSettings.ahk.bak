@@ -26,6 +26,6 @@ getH(position){
 
 ;writing positions
 writePositionCoords(position, x, y, w, h){
-  IniWrite, %x%`,%y%`,%w%`,%h%, positions.ini, WindowPositions, Position%1%
+  IniWrite, %x%`,%y%`,%w%`,%h%, positions.ini, WindowPositions, Position%position%
   return
 }
