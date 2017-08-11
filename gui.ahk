@@ -5,37 +5,70 @@ SetWorkingDir %A_ScriptDir%
 #Include windowTileSettings.ahk
 
 Gui MainGui:+AlwaysOnTop
-Gui MainGui:Add, Text, x15 y10 w120 h23 +0x200, Window Positions ;window header
+Gui MainGui:+Resize
 
-Gui MainGui:Add, Text, x15 y40 w50 h23 +0x200, Position 1 ; Position 1
-position1CoordsText := "X: " getX(1) ", Y: " getY(1) ", W: " getW(1) ", H: " getH(1) ;get coords string
-Gui MainGui:Add, Text, x15 y40 w50 h23 +0x200, Position 1 ;location label
-Gui MainGui:Add, Text, vP1Position x15 y60 w700 h23 +0x200, %position1CoordsText% ;coords
-Gui MainGui:Add, Button, x373 y60 w100 h25 gSetPosition1, Change Location ;location button
-Gui MainGui:Add, Text, x15 y90 w460 0x10 ;divider
+Gui MainGui:Add, Tab3,, Positons|Shortcuts|Settings 
 
-Gui MainGui:Add, Text, x15 y100 w50 h23 +0x200, Position 2 ; Position 2
-position2CoordsText := "X: " getX(2) ", Y: " getY(2) ", W: " getW(2) ", H: " getH(2) ;get coords string
-Gui MainGui:Add, Text, x15 y100 w50 h23 +0x200, Position 2 ;location label
-Gui MainGui:Add, Text, vP2Position x15 y120 w700 h23 +0x200, %position2CoordsText% ;coords
-Gui MainGui:Add, Button, x373 y120 w100 h25 gSetPosition2, Change Location ;location button
+xPadding = 20
+sectionHeight = 60
 
-Gui MainGui:Show, w490 h381, Win Manager
+;Add controls
+Loop, 12 {
+  ;Fetch vars
+  yOffset := (A_Index - 1) * 60 ;final number is height of section. yOffset is used to position the next section below the previous section
+  yPosLabelOffset := yOffset + 40
+  yCoordsOffset := yOffset + 60
+  yButtonOffset := yOffset + 60
+  yDivOffset := yOffset + 90
+  positionCoordsText := "X: " getX(A_Index) ", Y: " getY(A_Index) ", W: " getW(A_Index) ", H: " getH(A_Index) ;get coords string
+  
+  ;Build gui
+  Gui MainGui:Add, Text, x%xPadding% y%yPosLabelOffset% w100 h23 +0x200, Position %A_Index% ; position label
+  Gui MainGui:Add, Text, vP%A_Index%Position x%xPadding% y%yCoordsOffset% w700 h23 +0x200, %positionCoordsText% ;coords
+  Gui MainGui:Add, Button, x373 y%yButtonOffset% w100 h25 gSetPosition%A_Index%, Change Location ;location button
+  Gui MainGui:Add, Text, x%xPadding% y%yDivOffset% w460 0x10 ;divider
+}
+
+Gui MainGui:Show, w500 h775, Win Manager
 Return
 
 ;Labels for setting position
 SetPosition1:
   launchSetPositionWindow(1)
-  return
-  
+  return  
 SetPosition2:
   launchSetPositionWindow(2)
   return
-  
 SetPosition3:
   launchSetPositionWindow(3)
   return
-
+SetPosition4:
+  launchSetPositionWindow(4)
+  return
+SetPosition5:
+  launchSetPositionWindow(5)
+  return
+SetPosition6:
+  launchSetPositionWindow(6)
+  return
+SetPosition7:
+  launchSetPositionWindow(7)
+  return
+SetPosition8:
+  launchSetPositionWindow(8)
+  return
+SetPosition9:
+  launchSetPositionWindow(9)
+  return
+SetPosition10:
+  launchSetPositionWindow(10)
+  return
+SetPosition11:
+  launchSetPositionWindow(11)
+  return
+SetPosition12:
+  launchSetPositionWindow(12)
+  return
 
 ;Saving position after tiling window to desired location
 SavePositionSettings:
