@@ -2,7 +2,7 @@
 #NoEnv
 SetBatchLines, -1
 
-#ctrls = 5  ;How many Hotkey controls to add.
+#ctrls = 12  ;How many Hotkey controls to add.
 Loop,% #ctrls {
  Gui, Add, Text, xm, Enter Hotkey #%A_Index%:
  IniRead, savedHK%A_Index%, hotkeys.ini, Hotkeys, %A_Index%, %A_Space%
@@ -53,23 +53,4 @@ setHK(num,INI,GUI) {
  TrayTip, Label%num%,% !INI ? GUI " ON":!GUI ? INI " OFF":GUI " ON`n" INI " OFF"
 }
 
-;These labels may contain any commands for their respective hotkeys to perform.
-Label1:
- MsgBox,% A_ThisLabel "`n" A_ThisHotkey
-return
 
-Label2:
- MsgBox,% A_ThisLabel "`n" A_ThisHotkey
-return
-
-Label3:
- MsgBox,% A_ThisLabel "`n" A_ThisHotkey
-return
-
-Label4:
- MsgBox,% A_ThisLabel "`n" A_ThisHotkey
-return
-
-Label5:
- MsgBox,% A_ThisLabel "`n" A_ThisHotkey
-return
