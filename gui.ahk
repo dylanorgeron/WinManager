@@ -3,6 +3,17 @@
 #NoTrayIcon
 SetWorkingDir %A_ScriptDir%
 
+;check if ini files exist
+IfNotExist, positions.ini
+  createIni()
+
+createIni(){
+  Loop, 12{
+    IniWrite, 0`,0`,0`,0, positions.ini, WindowPositions, Position%A_Index%
+  }
+  FileAppend, EOF, positions.ini
+}
+
 #Include windowTileSettings.ahk
 
 Gui MainGui:+AlwaysOnTop
@@ -55,6 +66,7 @@ SavePositionSettings:
   WinGetTitle, positionAsTitle, A
   StringRight, position, positionAsTitle, 1
   writePositionCoords(position, X, Y, Width, Height)
+  IniRead, windowPositions, positions.ini, WindowPositions
   GuiControl, MainGui:, P%position%Position, Position %position%: %X%`, %Y%`, %Width%`, %Height%`,
   Gui SetPositionGui:Submit
   Gui MainGui:+AlwaysOnTop

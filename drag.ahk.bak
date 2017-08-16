@@ -1,10 +1,5 @@
-#SingleInstance Force
-
 #Include Gdip_All.ahk
 #Include GDIpHelper.ahk
-#Include windowTileSettings.ahk
-
-
 
 guidesDrawn = false
 
@@ -74,6 +69,7 @@ if (!%guidesDrawn%){
     w := getW(A_Index)
     h := getH(A_Index)
     if(x != 0 || y != 0 || w != 0 || h != 0){
+      MsgBox, hit
       Gdip_FillRectangle(G, pBrush, x, y, w, h)
       x := x + w/2 - 35
       y := y + h/2 - 35

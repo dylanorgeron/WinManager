@@ -3,8 +3,18 @@
 #NoTrayIcon
 SetWorkingDir %A_ScriptDir%
 
+;check if ini files exist
+IfNotExist, positions.ini
+  createIni()
+
+createIni(){
+  Loop, 12{
+    IniWrite, 0`,0`,0`,0, positions.ini, WindowPositions, Position%A_Index%
+  }
+  FileAppend, EOF, positions.ini
+}
+
 #Include windowTileSettings.ahk
-#Include iniCreation.ahk
 
 Gui MainGui:+AlwaysOnTop
 Gui MainGui:Add, Tab3, x10 y10 w480, Positons|Shortcuts|Settings 

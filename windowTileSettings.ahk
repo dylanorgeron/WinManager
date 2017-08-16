@@ -1,17 +1,6 @@
-;check if ini files exist
-IfNotExist, positions.ini
-  Loop, 12{
-    IniWrite, 0`,0`,0`,0, positions.ini, WindowPositions, Position%A_Index%
-  }
-  FileAppend, EOF, positions.ini
-
 ;load positions
 global windowPositions =
 IniRead, windowPositions, positions.ini, WindowPositions
-
-;load hotkeys
-global savedHotkeys =
-IniRead, savedHotkeys, hotkeys.ini, Hotkeys
 
 ;reading positions
 getX(position){
