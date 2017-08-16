@@ -4,6 +4,7 @@
 SetWorkingDir %A_ScriptDir%
 
 #Include windowTileSettings.ahk
+#Include iniCreation.ahk
 
 Gui MainGui:+AlwaysOnTop
 Gui MainGui:Add, Tab3, x10 y10 w480, Positons|Shortcuts|Settings 
@@ -37,6 +38,7 @@ Gui +LastFound +Owner
 OnMessage(0x112, "WM_SYSCOMMAND")
 Gui MainGui:Show, w500 h530, Win Manager
 WinGet Gui1, ID, A
+
 Return
 
 ;Minimize gui to tray
