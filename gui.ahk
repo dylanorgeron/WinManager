@@ -1,5 +1,6 @@
 ﻿#NoEnv
 #SingleInstance Force
+#NoTrayIcon
 SetWorkingDir %A_ScriptDir%
 
 #Include windowTileSettings.ahk
@@ -26,11 +27,27 @@ Loop,% numSections {
   Gui MainGui:Add, Text, x%xPadding% y%yDivOffset% w460 0x10 ;divider
 }
 
-;Hotkey controls
-#Include hotkeyControls.ahk
 
+;Minimize to tray
+Menu("Tray","Nostandard"), Menu("Tray","Add","Restore","GuiShow"), Menu("Tray","Add")
+Menu("Tray","Default","Restore"), Menu("Tray","Click",1), Menu("Tray","Standard")
+Menu("Tray","Icon","User32.dll",4)
+
+Gui +LastFound +Owner
+OnMessage(0x112, "WM_SYSCOMMAND")
 Gui MainGui:Show, w500 h530, Win Manager
+WinGet Gui1, ID, A
+
 Return
+
+;Minimize gui to tray
+#Include minimizeToTray.ahk
+
+;Drag utils
+#Include drag.ahk
+
+;Repeated Labels
+#Include labels.ahk
 
 ;Saving position after tiling window to desired location
 SavePositionSettings:
@@ -53,10 +70,6 @@ launchSetPositionWindow(positionToSet){
   Gui SetPositionGui:Show, w490 h100, Set Position %positionToSet%
   return
 }
-
-;Repeated Labels
-#Include labels.ahk
-
 
 ;Close
 MainGuiGuiEscape:
